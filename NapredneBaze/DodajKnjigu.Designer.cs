@@ -157,7 +157,7 @@
             this.buttonIzmijeniDK.Location = new System.Drawing.Point(537, 163);
             this.buttonIzmijeniDK.Name = "buttonIzmijeniDK";
             this.buttonIzmijeniDK.Size = new System.Drawing.Size(149, 44);
-            this.buttonIzmijeniDK.TabIndex = 11;
+            this.buttonIzmijeniDK.TabIndex = 13;
             this.buttonIzmijeniDK.Text = "Izmijeni podatke";
             this.buttonIzmijeniDK.UseVisualStyleBackColor = false;
             this.buttonIzmijeniDK.Click += new System.EventHandler(this.buttonIzmijeniDK_Click);
@@ -182,7 +182,7 @@
             this.Controls.Add(this.labelAutorDK);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DodajKnjigu";
-            this.Text = "Dodaj/Izmijeni knjigu";
+            this.Text = "Dodaj/izmijeni knjigu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

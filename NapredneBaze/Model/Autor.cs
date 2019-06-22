@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -212,6 +213,31 @@ namespace NapredneBaze.Model
                 return false;
             }
 
+        }
+
+        public static void PrikaziAutore(DataGridView dgv)
+        {
+            MySqlConnection connection = DBConnection.getConnection();
+            MySqlCommand command = new MySqlCommand();
+            String query = "SELECT * FROM autor ";
+            DataTable tabela = new DataTable();
+
+            try
+            {
+                command.CommandText = query;
+                command.Connection = connection;
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = command;
+                adapter.Fill(tabela);
+                dgv.DataSource = tabela;
+                dgv.Columns["id"].Visible = false;
+                dgv.Columns["biografija"].Visible = false;
+            }
+            catch
+            {
+
+            }
         }
     }
 }

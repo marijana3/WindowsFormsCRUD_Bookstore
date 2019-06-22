@@ -1,0 +1,121 @@
+-- MySQL dump 10.13  Distrib 8.0.5, for Win64 (x86_64)
+--
+-- Host: localhost    Database: knjizara
+-- ------------------------------------------------------
+-- Server version	8.0.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `knjizara`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `knjizara`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `knjizara` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `knjizara`;
+
+--
+-- Table structure for table `autor`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `autor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ime` varchar(45) DEFAULT NULL,
+  `prezime` varchar(45) DEFAULT NULL,
+  `biografija` varchar(10000) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `autor`
+--
+
+/*!40000 ALTER TABLE `autor` DISABLE KEYS */;
+INSERT INTO `autor` VALUES (1,'Herman','Hese','Herman Hese (Hermann Karl Hesse) je bio njemačko-švajcarski pjesnik, romansijer i slikar. \nRođen je u Kalvu u Njemačkoj 02. jula 1877. godine, a umro je u Montanjoli u Švajcarskoj 09. avgusta 1962. godine. \nDobitnik je Nobelove nagrade za književnost, 1946. godine.U početnim fazama svog literarnog rada bio je romantičar, \na onda sve više pada pod uticaj orijentalne mudrosti, misticizma, psihoanalize, hindu i budističke filozofije.\nNajpoznatija djela Hermana Hesea su „Sidarta“, „Stepski vuk“ i „Igra staklenih perli“'),(2,'Dzordz','Orvel','Džordž Orvel (George Orwell) je bio engleski pisac. Rođen je 25. juna 1903. godine u Motihariju (Indija), a umro je 21. januara 1950. godine u Londonu. Njegovo pravo ime je bilo Erik Artur Bler (Eric Arthur Blair). Svrstava se među najpoznatije engleske esejiste 20. vijeka. Postao je slavan zahvaljujući svojim književnim i političkim radovima, kritikama i romanima. Njegovi najpoznatiji romani su: „Životinjska farma“ i „1984-ta“. Ustanovljen je pridjev „orvelijanski“ kojim se opisuje mehanizam državne kontrole misli.'),(3,'Borislav','Pekić','Borislav Pekić je bio srpski dramski pisac, romansijer, filmski scenarista i akademik. Uvrštava se u red najznačajnijih srpskih književnika 20. vijeka. Rođen je 04. februara 1930. godine u Podgorici, a umro je u Londonu 02. jula 1992. godine. Zajedno sa trinaest intelektualaca obnovio je rad Demokratske stranke.Dobitnik je brojnih nagrada i priznanja. Najpoznatija djela Borislava Pekića su: „Bjesnilo“, „Zlatno runo“, „Kako upokojiti vampira“, „Odbrana i posljednji dani“, „Vrijeme čuda“ i „Atlantida“. U Srpskoj akademiji nauka i umjetnosti bio je njen dopisni član.'),(4,'Haruki','Murakami','Haruki Murakami je japanski pisac. Njegove knjige i priče bili su bestseleri u Japanu, ali i širom sveta, jer su njegovi radovi prevedeni na 50 jezika.  Rođen je 12. januara 1949. godine u Kjotu.\r\n\r\nPriznanja kritike za njegove radove su mu donele brojne nagrade u Japanu i u svetu, kao što je nagrada Franca Kafke (Franz Kafka Prize) 2006. godine i Jerusalimska nagrada (Jerusalem Prize) 2009. godine. Murakamijevi najzapaženiji radovi su „Lov na divlju ovcu“ („A wild sheep chase“) iz 1982. godine, „Norveška šuma“ („Norwegian wood“) iz 1987. godine, zatim „Letopis ptice navijalice“ („The wind-up bird chronicle“) iz 1994. godine, „Kafka na obali“ („Kafka on the shore“) iz 2002. i „1Q84“ iz 2009. godine.');
+/*!40000 ALTER TABLE `autor` ENABLE KEYS */;
+
+--
+-- Table structure for table `clan`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `clan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ime` varchar(45) DEFAULT NULL,
+  `prezime` varchar(45) DEFAULT NULL,
+  `grad` varchar(45) DEFAULT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `popust` varchar(45) DEFAULT NULL,
+  `admin` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clan`
+--
+
+/*!40000 ALTER TABLE `clan` DISABLE KEYS */;
+INSERT INTO `clan` VALUES (1,'Marijana','Veletić','Kolašin','vaya','pass123','0000',1),(2,'Anja','Pješivac','Pješivac','anjoza','kalashtura','1010',0),(3,'Marko','Marković','Marković','marko123','markovic123','0000',0),(4,'Danijela','Žižić','Žižić','escapist','aproksimacija','0000',0),(5,'Nevena','Đuričković','Đuričković','nevena59','090198','1000',0),(6,'Luka','Bulatovic','Bulatovic','luka','luka','0000',0);
+/*!40000 ALTER TABLE `clan` ENABLE KEYS */;
+
+--
+-- Table structure for table `knjiga`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `knjiga` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `autorID` int(11) DEFAULT NULL,
+  `naziv` varchar(45) DEFAULT NULL,
+  `opis` varchar(10000) DEFAULT NULL,
+  `cijena` double DEFAULT NULL,
+  `zanr` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idknjiga_UNIQUE` (`id`),
+  KEY `autorID_idx` (`autorID`),
+  CONSTRAINT `autorID` FOREIGN KEY (`autorID`) REFERENCES `autor` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `knjiga`
+--
+
+/*!40000 ALTER TABLE `knjiga` DISABLE KEYS */;
+INSERT INTO `knjiga` VALUES (1,1,'Stepski vuk','Stepskog vuka Hese je napisao 1927. godine. U toj \"biografiji duse\" svaka licnost je odraz jednog od sukoba autora sa samim sobom, kao ogledalo neprikrivenog razdora i pometnje u samopoimanju. \n\nIme glavnog junaka - Hari Haler jasno je obiljezje, dovoljno za indentifikaciju. Hari Haler ima mnogo toga zajednickog sa Heseom. Sam je Hese kao izdavac rukopisa o izlaganjima Harija Halera, primijetio sledece: \"Ove zabiljeske, bez obzira do koje mjere pocivaju na stvarnim dozivljajima , predstavljaju saznanje da se velike bolesti nasega vremena ne mogu savladati na taj nacin sto cemo ih zaobici i uljepsati , to je pokusaj da sama bolest bude predmet izlaganja .\"\n\nCjelokupno pripovjedacko djelo Hermana Hesea je autobiografsko, ali sa jednim posebnim obiljezjem . Sam Hese je rekao da su to \" biografske duse \". Dozivljaji su uglavnom plod maste ali ne u smislu proizvoljnog izmisljanja , vec kao pokusaj da se duboko dozivljavani dusevni tokovi prikazu kao vidljiva zbivanja. Tako je Heseovo kazivanje, s jedne strane, vezano za stvarnost koja je formirana u vremenu, a s druge, za nevidljivu i neoformljenu strvarnost koja ne zna za vrijeme…',7,'Klasična književnost'),(2,2,'Sidarta','Sidarta, prelijepi sin bramana, nezadovoljan duhovnom ispunjenoscu koju mu pruza tradicionalna vjera krece na put traganja za krajnjom istinom i konacnim prosvjetljenjem, ne odustajuci od svog zivotnog cilja i autenticnosti ni po koju cijenu. U Heseovoj kritici savremene civilizacije i gradjanskog drustva, u njegovom protestu protiv svih oblika totalitarizma, u njegovom neumornom zalaganju za svjetski mir, u odbacivanju svake prinude nad duhovnom slobodom, jednostavan i kreativan zivot - savremeni citalac nalazi potvrdu svojih ideala i stremljenja. Hese pise jednostavno i nadahnuto, iskreno i poeticno. On lako i brzo osvaja citaoce svojom neposrednoscu, istinitoscu, magicnim prizvukom svojih recenica i mudrim porukama svog ogromnog zivotnog iskustva.',8,'Klasična književnost'),(3,3,'1984','1984 - Roman opisuje ekstremno totalitarno društvo i pojedinca u životu nadziranom 24 časa svakodnevno. Tematika je neposredno povezana sa staljinističkim režimom i kultom ličnosti, zbog čega je roman smatran potencijalno politički opasnim, pa je u pojedinim zemljama bio zabranjen. ',10,'Klasična književnost'),(4,4,'Bjesnilo','Virus u obliku metka pogađa u srce civilizacije... Niko nije bezbedan.\r\n\r\nVizija kraja sveta koja odgovara onome što smo od sveta napravili.\r\n\r\nBiološka katastrofa, u razmerama nepoznatim savremenoj istoriji, pogađa londonski aerodrom Hitrou u jeku letnje sezone. Usled mutacije virusa besnila u jednoj naučnoj laboratoriji, epidemija se širi zastrašujućom brzinom jer nijedna vakcina ne deluje. U karantinu, koji obuhvata ogroman kompleks, zateklo se na desetine hiljada putnika i nameštenika aerodroma... \r\n\r\nU ovoj univerzalnoj metafori, čije književne srodnike možemo prepoznati u Kamijevoj Kugi ili Saramagovom Slepilu, zaraženi ljudi vode rat ne samo sa zlokobnim psećim virusom, nego i sa besnilom u sebi i besnilom svoje okoline, razotkrivajući tako zastrašujuću istinu o ljudskoj prirodi: nije nam potreban virus da bi ludilo koje s rođenjem nosimo iskazalo sve svoje vidove i probilo tanku opnu obzira i samopoštovanja.\r\n\r\nApokaliptična vizija sveta koja se bavi ljudskom vrstom i prirodom naše civilizacije.',9,'Triler');
+/*!40000 ALTER TABLE `knjiga` ENABLE KEYS */;
+
+--
+-- Dumping routines for database 'knjizara'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-06-22 15:23:37

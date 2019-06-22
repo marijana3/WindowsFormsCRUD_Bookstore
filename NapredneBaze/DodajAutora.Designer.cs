@@ -157,7 +157,7 @@
             this.Controls.Add(this.labelImeDA);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DodajAutora";
-            this.Text = "Dodaj/Izmijeni autora";
+            this.Text = "Dodaj autora";
             this.ResumeLayout(false);
             this.PerformLayout();
 

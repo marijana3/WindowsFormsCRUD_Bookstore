@@ -25,10 +25,7 @@ namespace NapredneBaze
         private void Form1_Load(object sender, EventArgs e)
         {
             MySqlConnection connection = DBConnection.getConnection();
-            Autor.listaAutora(comboBoxAutoriA);
-            Knjiga.listaKnjiga(comboBoxKnjigeA);
-            Autor.listaAutora(comboBoxAutoriBrisi);
-            Knjiga.listaKnjiga(comboBoxKnjigeBrisi);
+   
         }
 
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -55,12 +52,12 @@ namespace NapredneBaze
 
         private void buttonKnjige_Click(object sender, EventArgs e)
         {
+            Knjiga.PrikaziKnjige(dataGridView1);
             panelKnjige.Visible = true;
             panelAutor.Visible = false;
             panel1.Visible = false;
             panel2.Visible = false;
             panelAdmin.Visible = false;
-            Knjiga.PrikaziKnjige(dataGridView1);
         }
 
         private void buttonBackA_Click(object sender, EventArgs e)
@@ -95,10 +92,6 @@ namespace NapredneBaze
         {
             DodajKnjigu form = new DodajKnjigu();
             form.ShowDialog();
-            comboBoxKnjigeA.Items.Clear();
-            comboBoxKnjigeBrisi.Items.Clear();
-            Knjiga.listaKnjiga(comboBoxKnjigeA);
-            Knjiga.listaKnjiga(comboBoxKnjigeBrisi);
         }
 
         private void comboBoxAutori_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,44 +106,10 @@ namespace NapredneBaze
             Autor.detaljiOAutoru(ime, prezime, labelImeSelected, labelPrezimeSelected, textBoxBiografijaSelected, pictureBoxAutor);
         }
 
-        private void comboBoxKnjigeA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxKnjigeA.SelectedIndex == -1) return;
-            string naziv = comboBoxKnjigeA.Text;
-            int id = Knjiga.nadjiID(naziv);
-            DodajKnjigu form = new DodajKnjigu(id);
-            form.ShowDialog();
-            comboBoxKnjigeA.SelectedIndex = -1;
-            comboBoxKnjigeA.Items.Clear();
-            comboBoxKnjigeBrisi.Items.Clear();
-            Knjiga.listaKnjiga(comboBoxKnjigeA);
-            Knjiga.listaKnjiga(comboBoxKnjigeBrisi);
-        }
-
         private void buttonDodajAutora_Click(object sender, EventArgs e)
         {
             DodajAutora form = new DodajAutora();
             form.ShowDialog();
-            comboBoxAutoriA.Items.Clear();
-            comboBoxAutoriBrisi.Items.Clear();
-            Autor.listaAutora(comboBoxAutoriA);
-            Autor.listaAutora(comboBoxAutoriBrisi);
-        }
-
-        private void comboBoxAutoriA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxAutoriA.SelectedIndex == -1) return;
-            string[] arr = comboBoxAutoriA.Text.Split(' ');
-            string ime = arr[0];
-            string prezime = arr[1];
-            int id = Autor.nadjiID(ime, prezime);
-            DodajAutora form = new DodajAutora(id);
-            form.ShowDialog();
-            comboBoxAutoriA.SelectedIndex = -1;
-            comboBoxAutoriA.Items.Clear();
-            comboBoxAutoriBrisi.Items.Clear();
-            Autor.listaAutora(comboBoxAutoriA);
-            Autor.listaAutora(comboBoxAutoriBrisi);
         }
 
         private void buttonNazadA_Click(object sender, EventArgs e)
@@ -160,68 +119,6 @@ namespace NapredneBaze
             panel1.Visible = false;
             panel2.Visible = true;
             panelAdmin.Visible = false;
-            comboBoxKnjigeA.SelectedIndex = -1;
-            comboBoxAutoriA.SelectedIndex = -1;
-            comboBoxKnjigeBrisi.SelectedIndex = -1;
-            comboBoxAutoriBrisi.SelectedIndex = -1;
-        }
-
-        private void comboBoxKnjigeBrisi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxKnjigeBrisi.SelectedIndex == -1) return;
-            var confirmResult = MessageBox.Show("Jeste li sigurni?", "Potvrdite brisanje!",
-                                MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.OK)
-            {
-                string naziv = comboBoxKnjigeBrisi.Text;
-                int id = Knjiga.nadjiID(naziv);
-                Knjiga.BrisanjeKnjige(id);
-                comboBoxKnjigeBrisi.SelectedIndex = -1;
-                comboBoxKnjigeA.Items.Clear();
-                comboBoxKnjigeBrisi.Items.Clear();
-                Knjiga.listaKnjiga(comboBoxKnjigeA);
-                Knjiga.listaKnjiga(comboBoxKnjigeBrisi);
-            }
-            else
-            {
-                comboBoxKnjigeBrisi.SelectedIndex = -1;
-            }
-        }
-
-        private void comboBoxAutoriBrisi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBoxAutoriBrisi.SelectedIndex == -1) return;
-
-            var confirmResult = MessageBox.Show("Jeste li sigurni?", "Potvrdite brisanje!",
-                                MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.OK)
-            {
-                string[] arr = comboBoxAutoriBrisi.Text.Split(' ');
-                string ime = arr[0];
-                string prezime = arr[1];
-                int id = Autor.nadjiID(ime, prezime);
-                Knjiga.BrisanjeKnjigaKaskadno(id);
-                Autor.BrisanjeAutora(id);
-                comboBoxAutoriBrisi.SelectedIndex = -1;
-                comboBoxAutoriA.Items.Clear();
-                comboBoxAutoriBrisi.Items.Clear();
-                Autor.listaAutora(comboBoxAutoriA);
-                Autor.listaAutora(comboBoxAutoriBrisi);
-                comboBoxKnjigeA.Items.Clear();
-                comboBoxKnjigeBrisi.Items.Clear();
-                Knjiga.listaKnjiga(comboBoxKnjigeA);
-                Knjiga.listaKnjiga(comboBoxKnjigeBrisi);
-
-                String destPath = "../../Autori/" + ime + "" + prezime + ".jpg";
-                if (File.Exists(destPath))
-                {
-                    File.Delete(destPath);
-                }
-            }
-            else
-            {
-                comboBoxAutoriBrisi.SelectedIndex = -1;
-            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -241,6 +138,30 @@ namespace NapredneBaze
             panel1.Visible = false;
             panel2.Visible = true;
             panelAdmin.Visible = false;
+        }
+
+        private void buttonIzmijeniKnjigu_Click(object sender, EventArgs e)
+        {
+            IzmijeniBrisiKnjigu form = new IzmijeniBrisiKnjigu(false);
+            form.ShowDialog();
+        }
+
+        private void buttonBrisiKnjigu_Click(object sender, EventArgs e)
+        {
+            IzmijeniBrisiKnjigu form = new IzmijeniBrisiKnjigu(true);
+            form.ShowDialog();
+        }
+
+        private void buttonIzmijeniAutora_Click(object sender, EventArgs e)
+        {
+            IzmijeniBrisiAutora form = new IzmijeniBrisiAutora(false);
+            form.ShowDialog();
+        }
+
+        private void buttonBrisiAutora_Click(object sender, EventArgs e)
+        {
+            IzmijeniBrisiAutora form = new IzmijeniBrisiAutora(true);
+            form.ShowDialog();
         }
     }
 }
